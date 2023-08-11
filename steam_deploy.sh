@@ -112,10 +112,6 @@ else
   echo "$configVdf" | base64 -d > "$steamdir/config/config.vdf"
   chmod 777 "$steamdir/config/config.vdf"
 
-  echo "Copying $steamdir/ssfn..."
-  echo "$ssfnFileContents" | base64 -d > "$steamdir/$ssfnFileName"
-  chmod 777 "$steamdir/$ssfnFileName"
-
   echo "Finished Copying SteamGuard Files!"
   echo ""
 fi
@@ -126,7 +122,7 @@ echo "#        Uploading build        #"
 echo "#################################"
 echo ""
 
-$STEAM_CMD +login "$steam_username" "$steam_password" "$steam_totp" +run_app_build $manifest_path +quit || (
+$STEAM_CMD +run_app_build $manifest_path +quit || (
     echo ""
     echo "#################################"
     echo "#             Errors            #"
