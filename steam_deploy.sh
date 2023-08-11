@@ -93,7 +93,7 @@ if [ -n "$steam_totp" ]; then
   echo "#################################"
   echo ""
 else
-  if [ ! -n "$configVdf" ] || [ ! -n "$ssfnFileName" ] || [ ! -n "$ssfnFileContents" ]; then
+  if [ ! -n "$configVdf" ]; then
     echo "MFA inputs are missing or incomplete! Cannot proceed."
     exit 1
   fi
@@ -122,7 +122,7 @@ echo "#        Uploading build        #"
 echo "#################################"
 echo ""
 
-$STEAM_CMD +run_app_build $manifest_path +quit || (
+$STEAM_CMD +login "$steam_username" +run_app_build $manifest_path +quit || (
     echo ""
     echo "#################################"
     echo "#             Errors            #"
